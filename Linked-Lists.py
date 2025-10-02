@@ -60,6 +60,17 @@ class LinkedList:
             self.tail = None
         return temp.value
     
+    def prepend(self, value):
+        new_node = Node(value)
+        if self.length == 0:
+            self.head = new_node
+            self.tail = new_node
+        else:
+            new_node.next = self.head
+            self.head = new_node
+        self.length += 1
+        return True
+    
 
 
 
@@ -76,6 +87,7 @@ print(my_linked_list.pop())
 print(my_linked_list.pop())
 # (0) Items left in list - Returns None
 print(my_linked_list.pop())
+my_linked_list.prepend(1)
 
 # The code snippet `print('Head:', my_linked_list.head.value)`, `print('Tail:',
 # my_linked_list.tail.value)`, and `print('Length:', my_linked_list.length)` is outputting the values
