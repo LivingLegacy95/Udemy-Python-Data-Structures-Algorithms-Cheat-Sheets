@@ -21,14 +21,11 @@ class LinkedList:
             print(temp.value)
             temp = temp.next
 
-    def append(self,value):
         # The `append` function adds a new node with a given value to the end of a linked list.
-        
         # :param value: The `value` parameter in the `append` method represents the data that you want to add
         # to the linked list as a new node. This value will be stored in the `Node` object that is created
         # with this value and added to the linked list at the end
-        # :return: The `append` method is returning a boolean value `True` to indicate that the operation was
-        # successful.
+    def append(self,value):
         new_node = Node(value)
         if self.head is None:
             self.head = new_node
@@ -60,6 +57,11 @@ class LinkedList:
             self.tail = None
         return temp.value
     
+        
+        # The `prepend` function adds a new node with a given value to the beginning of a linked list.
+        # :param value: The `prepend` method you provided is used to add a new node with the given value
+        # at the beginning of a linked list. The `value` parameter represents the data that will be stored
+        # in the new node being added to the linked list
     def prepend(self, value):
         new_node = Node(value)
         if self.length == 0:
