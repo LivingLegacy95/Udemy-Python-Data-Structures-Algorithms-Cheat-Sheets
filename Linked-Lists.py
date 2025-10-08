@@ -27,13 +27,13 @@ class LinkedList:
         # with this value and added to the linked list at the end
     def append(self, value):
         new_node = Node(value)                          # instantiating a new node
-        if self.head is None:
+        if self.head is None:                           # edge case: if list.is_empty
             self.head = new_node
             self.tail = new_node
-        else:
-            self.tail.next = new_node
-            self.tail = new_node
-        self.length += 1
+        else:                                           
+            self.tail.next = new_node                   # pointing self.tail at the new node    
+            self.tail = new_node                        # assigning self.tail to the newly appended node
+        self.length += 1                                # incrementing the length of the list
         return True
     
         # The `prepend` function adds a new node with a given value to the beginning of a linked list.
@@ -42,61 +42,80 @@ class LinkedList:
         # in the new node being added to the linked list
     def prepend(self, value):
         new_node = Node(value)
-        if self.length == 0:
-            self.head = new_node
+        if self.length == 0:                            # edge case: if list.is_empty
+            self.head = new_node                        # pointing and assigning self.head and self.tail to the new node
             self.tail = new_node
         else:
-            new_node.next = self.head
-            self.head = new_node
-        self.length += 1
+            new_node.next = self.head                   # this line points the new node at the current self.head of the linked list 
+            self.head = new_node                        # assigns the head of the linked list to the new node
+        self.length += 1                                # increasing the length of the list to reflect prepended node
         return True
     
-    def pop(self):
         # The code `if self.length == 0: return None` is a condition check in the `pop` method of the
         # `LinkedList` class. It is checking if the linked list is empty (i.e., its length is 0). If
         # the linked list is empty, it returns `None` indicating that there are no elements to pop
         # from the list. This is a common practice to handle edge cases and prevent errors when trying
         # to pop elements from an empty list.
-        if self.length == 0:
+    def pop(self):
+        if self.length == 0:                            # edge case: if list.is_empty
             return None
-        temp = self.head
-        previous = self.head
-        while temp.next is not None:
-            previous = temp 
-            temp = temp.next
-        self.tail = previous
-        self.tail.next = None
-        self.length -= 1
-        if self.length == 0:
+        temp = self.head                                # variable to store value of the current index while iterating through linked list
+        previous = self.head                            # variable to store value of the current index while iterating through linked list
+        while temp.next is not None:                    # while there are still items in the linked list
+            previous = temp                             # sets 'previous' variable to whatever 'temp' is while iterating through the list.
+            temp = temp.next                            # logic to iterate through the linked list. 'temp' is being assigned to the next index of the list
+        self.tail = previous                            # when loop has finished 'self.tail' is set to the last item of the list 
+        self.tail.next = None                           # setting the value of the next item of the last index of the linked list to none to delete popped node
+        self.length -= 1                                # decreasing the list by one to reflect poppped node
+        if self.length == 0:                            # edge case: if list.is_empty
             self.head = None
             self.tail = None
-        # return temp.value                 # this function return the memory address of the object, to see the value of that object, uncomment this line
+        # return temp.value                             # this function return the memory address of the object, to see the value of that object, uncomment this line
         return temp
     
+        # This Python function removes and returns the first element of a linked list.
+        # :return: The `pop_first` method is returning the node that was removed from the beginning of the
+        # linked list. If the linked list is empty (length is 0), it will return `None`. Otherwise, it will
+        # return the node that was removed.
     def pop_first(self):
-        if self.length == 0:
+        if self.length == 0:                            # edge case: if list.is_empty              
             return None
-        temp = self.head
-        self.head = self.head.next
-        temp.next = None
-        self.length -= 1
-        if self.length == 0:
-            self.tail = None
+        temp = self.head                                # assigning a variable to self.head
+        self.head = self.head.next                      # pointing self.head to the next node
+        temp.next = None                                # this line removes the original self.head node by assigning the next node to none which effectively pops node off the list
+        self.length -= 1                                # decreasing the list to reflect poppped node
+        if self.length == 0:                            
+            self.tail = None                            
         return temp
-        # return temp.value                # this function return the memory address of the object, to see the value of that object, uncomment this line
+        # return temp.value                             # this function return the memory address of the object, to see the value of that object, uncomment this line
 
+        # This function retrieves the node at a specified index in a linked list.
+        
+        # :param index: The `index` parameter in the `get` method is used to specify the position of the node
+        # that you want to retrieve from the linked list. It represents the index of the node starting from 0
+        # for the head node
+        # :return: The code is returning the node at the specified index in a linked list.
     def get(self, index):
-        if index < 0 or index >= self.length:
+        if index < 0 or index >= self.length:           # edge case: testing for if index is called outside of the linked list
             return None
-        temp = self.head
-        for _ in range(index):
-            temp = temp.next
+        temp = self.head                                # assigning a variable to current self.head node
+        for _ in range(index):                          # for loop to iterate through linked list
+            temp = temp.next                            # this line iterates through the linked list until the index parameter that was called has been met
             return temp
     
+        # The `set_value` function updates the value at a specified index in a data structure if the index
+        # exists.
+        # :param index: The `index` parameter in the `set_value` method refers to the position or key in the
+        # data structure where you want to set a new value
+        # :param value: The `value` parameter in the `set_value` method represents the new value that you want
+        # to assign to the node at the specified index in the data structure
+        # :return: The `set_value` method returns `True` if the value at the specified index is successfully
+        # updated, and `False` if the index does not exist in the data structure (i.e., the `get` method
+        # returns `None` for that index).
     def set_value(self, index, value):
-        temp = self.get(index)
-        if temp:                           # = if temp is not None
-            temp.value = value
+        temp = self.get(index)                           # using previous method to call index given as arguement
+        if temp:                                         # = if temp is not None, meaning whenever you call for an index in the arguement there has to be a value at that index
+            temp.value = value                           # assigning the value of the variable assigned to the index you called as the 'value' defined in the arguement                   
             return True
         return False
         # for _ in range(index):
@@ -104,45 +123,64 @@ class LinkedList:
         #     temp = value
         #     return temp
     
+        # The insert function adds a new node with a specified value at a given index in a linked list.
+        
+        # :param index: The `index` parameter in the `insert` method refers to the position at which you want
+        # to insert a new value in the linked list. It represents the index where the new value should be
+        # inserted
+        # :param value: The `value` parameter in the `insert` method represents the value that you want to
+        # insert into the linked list at a specific index. This value will be stored in a new node and
+        # inserted at the specified index in the linked list
+        # :return: The `insert` method returns a boolean value - `True` if the insertion was successful, and
+        # `False` if the index is out of bounds.
     def insert(self, index, value):
-        if index < 0 or index >= self.length:
+        if index < 0 or index >= self.length:            # edge case: testing for if index is called outside of the linked list
             return False
-        if index == 0:
+        if index == 0:                                   # edge case: if list.is_empty prepend the 'value' of the arguement given
             return self.prepend(value)
-        if index == self.length:
+        if index == self.length:                         # edge case: adding new node to the back of the linked list
             return self.prepend(value)
-        new_node = Node(value)
-        temp = self.get(index -1)
-        new_node.next = temp.next
-        temp.next = new_node
-        self.length += 1
+        new_node = Node(value)                           # instantiating a new node
+        temp = self.get(index -1)                        # edge case: inserting a new node in the middle of the linked list   
+        new_node.next = temp.next                        # points to the next node in the linked list, new_node.next and temp.next are now pointing at the same node
+        temp.next = new_node                             # points temp at the new node adding it to the list    
+        self.length += 1                                 # increasing linked list length to reflect added node
         return True
     
+        # This Python function removes a node at a specified index from a linked list.
+        
+        # :param index: The `remove` method you provided seems to be a part of a linked list implementation.
+        # The `index` parameter in this method represents the position of the node that needs to be removed
+        # from the linked list
+        # :return: The code snippet provided is a method for removing a node at a specific index in a linked
+        # list. The method returns the node that was removed from the linked list.
     def remove(self, index):
-        if index < 0 or index >= self.length:
+        if index < 0 or index >= self.length:           # edge case: testing for if index is called outside of the linked list
             return None
-        if index == 0:
+        if index == 0:                                  # edge case: if linked list.is_empty pop the first node using the 'pop_first" method and return the value of that index
             return self.pop_first
-        if index == self.length - 1:
+        if index == self.length - 1:                    # edge case: if removing the last node of the linked list
             return self.pop
-        prev = self.get(index - 1)
-        temp = prev.next
-        prev.next  = temp.next
-        temp.next = None
-        self.length -= 1
+        prev = self.get(index - 1)                      # edge case: grabbing a node by the index from within the middle of the list
+        temp = prev.next                                # O(n) logic to grab the next node of the index you got from the .get() method. O(1) would be temp = self.get(index -1)
+        prev.next  = temp.next                          # points the current grabbed node at the node next to the temp node
+        temp.next = None                                # pointing temp.next to nothing which removes this node from the list
+        self.length -= 1                                # decreasing linked list length by 1 to reflect popped node
         return temp
     
+        # This Python function reverses a linked list by swapping the head and tail nodes and updating the
+        # next pointers accordingly.
     def reverse(self):
-        temp = self.head
-        self.head = self.tail
-        self.tail = temp
-        after = temp.next
-        before = None
-        for _ in range(self.length):
-            after = temp.next
-            temp.next = before
-            before = temp
-            temp = after
+        temp = self.head                                # assigning a variable to the head of the linked list
+        self.head = self.tail                           # points head of the linked list at the last node of the linked list
+        self.tail = temp                                # points the self.tail variable to the variable that was assigned to the self.head of the linked list
+        after = temp.next                               # this variable is assigned to the node after the beginning node of the list
+        before = None                                   # this variable is assigned to the node before the beginning node of the list
+        for _ in range(self.length):                    # for loop to iterate through the linked list
+            after = temp.next                           # points the 'after' node to the node set before the 'after' node variable that was assigned as 'temp'
+            temp.next = before                          # points the 'temp' node to the node set before the 'temp' node variable that was assigned to 'before'
+            before = temp                               # 'before' node now slides over to the right
+            temp = after                                # 'temp' node slides over to the right
 
 
 
