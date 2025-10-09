@@ -30,7 +30,7 @@ class LinkedList:
         if self.head is None:                           # edge case: if list.is_empty
             self.head = new_node
             self.tail = new_node
-        else:                                           
+        else:                                           # edge case: if there is already nodes in the linked list
             self.tail.next = new_node                   # pointing self.tail at the new node    
             self.tail = new_node                        # assigning self.tail to the newly appended node
         self.length += 1                                # incrementing the length of the list
