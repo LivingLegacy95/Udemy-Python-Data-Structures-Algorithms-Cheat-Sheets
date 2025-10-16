@@ -60,7 +60,7 @@ class LinkedList:
         if self.length == 0:                            # edge case: if list.is_empty
             return None
         temp = self.head                                # variable to store value of the current index while iterating through linked list
-        previous = self.head                            # variable to store value of the current index while iterating through linked list
+        previous = self.head                            # variable to store value of the previous index while iterating through linked list
         while temp.next is not None:                    # while there are still items in the linked list
             previous = temp                             # sets 'previous' variable to whatever 'temp' is while iterating through the list.
             temp = temp.next                            # logic to iterate through the linked list. 'temp' is being assigned to the next index of the list
@@ -139,7 +139,7 @@ class LinkedList:
         if index == 0:                                   # edge case: if list.is_empty prepend the 'value' of the arguement given
             return self.prepend(value)
         if index == self.length:                         # edge case: adding new node to the back of the linked list
-            return self.prepend(value)
+            return self.append(value)
         new_node = Node(value)                           # instantiating a new node
         temp = self.get(index -1)                        # edge case: inserting a new node in the middle of the linked list   
         new_node.next = temp.next                        # points to the next node in the linked list, new_node.next and temp.next are now pointing at the same node
@@ -158,9 +158,9 @@ class LinkedList:
         if index < 0 or index >= self.length:           # edge case: testing for if index is called outside of the linked list
             return None
         if index == 0:                                  # edge case: if linked list.is_empty pop the first node using the 'pop_first" method and return the value of that index
-            return self.pop_first
+            return self.pop_first()
         if index == self.length - 1:                    # edge case: if removing the last node of the linked list
-            return self.pop
+            return self.pop()
         prev = self.get(index - 1)                      # edge case: grabbing a node by the index from within the middle of the list
         temp = prev.next                                # O(n) logic to grab the next node of the index you got from the .get() method. O(1) would be temp = self.get(index -1)
         prev.next  = temp.next                          # points the current grabbed node at the node next to the temp node
