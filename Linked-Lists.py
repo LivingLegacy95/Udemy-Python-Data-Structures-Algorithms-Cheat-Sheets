@@ -182,8 +182,21 @@ class LinkedList:
             before = temp                               # 'before' node now slides over to the right
             temp = after                                # 'temp' node slides over to the right
 
-
-
+# Implement the find_middle_node method for the LinkedList class.
+# Note: this LinkedList implementation does not have a length member variable.
+# If the linked list has an even number of nodes, return the first node of the second half of the list.
+# Keep in mind the following requirements:
+    # The method should use a two-pointer approach, where one pointer (slow) moves one node at a time and the other pointer (fast) moves two nodes at a time.
+    # When the fast pointer reaches the end of the list or has no next node, the slow pointer should be at the middle node of the list.
+    # The method should return the middle node when the number of nodes is odd or the first node of the second half of the list if the list has an even number of nodes.
+    # The method should only traverse the linked list once.  In other words, you can only use one loop.
+    def find_middle_node(self):
+        slow = self.head                                # assigning a variable to head of the linked list
+        fast = self.head                                # assigning a variable to head of the linked list
+        while fast is not None and fast.next is not None: # this parameter is checking for when the index value have moved outside the length of the list
+            slow = slow.next                            # iterating through linked list one step at a time
+            fast = fast.next.next                       # iterating through linked list two steps at a time
+        return slow
 
 
 # `my_linked_list = LinkedList(4)` is creating a new instance of the `LinkedList` class with an
