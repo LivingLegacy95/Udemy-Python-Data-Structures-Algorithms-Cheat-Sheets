@@ -214,7 +214,7 @@ class LinkedList:
             fast = fast.next.next                       # iterating through linked list two step at a time
             if slow == fast:                            # checking to see if slow ever equals fast or "catches" up to fast meaning there was a loop. Returns true.
                 return True
-        return False
+        return False                                    # returns false when loop is finished and slow =! fast
 
 
 
