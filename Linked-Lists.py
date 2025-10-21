@@ -235,7 +235,7 @@ def find_kth_from_end(ll, k):
     slow = ll.head
     fast = ll.head
     for _ in range(k):
-        if fast is None:
+        if fast is None:                        # edge case: if index is outside of ll range
             return None
         fast = fast.next
     while fast is not None:
