@@ -232,8 +232,8 @@ def has_loop(self):
     # The slow and fast pointers should then move forward in the list at the same time until the fast pointer reaches the end of the list.
     # The function should return the slow pointer, which will be at the k-th position from the end of the list.
 def find_kth_from_end(ll, k):       
-    slow = ll.head
-    fast = ll.head
+    slow = ll.head                              # assigning a variable to head of the linked list
+    fast = ll.head                              # assigning a variable to head of the linked list
     for _ in range(k):
         if fast is None:                        # edge case: if index is outside of ll range
             return None
