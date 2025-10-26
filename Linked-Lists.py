@@ -178,6 +178,9 @@ class LinkedList:
             before = temp                               # 'before' node now slides over to the right
             temp = after                                # 'temp' node slides over to the right
 
+
+#                                                                                            # ***Interview Questions*** # 
+
 # Implement the find_middle_node method for the LinkedList class.
 # Note: this LinkedList implementation does not have a length member variable.
 # If the linked list has an even number of nodes, return the first node of the second half of the list.
