@@ -292,6 +292,26 @@ def remove_duplicates(self):
                 previous = current
             current = current.next
 
+def binary_to_decimal(self):
+    current = self.head
+    last_node = 0
+    while current.next is not None:
+        if current == 1:
+            current.value = current.value * 2 + current.value
+        elif current == 0:
+            current.value = current.value + 0
+        current = current.next
+    if current.next is None and current == 1:
+        current.value = current.value + last_node
+    return last_node
+
+def binary_to_decimal(self):
+    current = self.head
+    num = 0
+    while current is not None:
+        num = num * 2 + current.value
+        current = current.next
+    return num
 
 
 
@@ -302,25 +322,29 @@ def remove_duplicates(self):
 # `my_linked_list = LinkedList(4)` is creating a new instance of the `LinkedList` class with an
 # initial value of 4. This line of code initializes a linked list with a single node containing the
 # specified value of 4.
-my_linked_list = LinkedList(4)
-my_linked_list.append(8)
-my_linked_list.append(23)
-my_linked_list.append(21)
+my_linked_list = LinkedList(1)
+# my_linked_list.append(8)
+# my_linked_list.append(23)
+# my_linked_list.append(21)
+# my_linked_list.append(0)
+# my_linked_list.print_list(2)
+# # (2) Items left in list - Returns 2 node
+# print(my_linked_list.pop())
+# # (1) Items left in list - Returns 4 node
+# print(my_linked_list.pop())
+# # (0) Items left in list - Returns None
+# print(my_linked_list.pop())
+# my_linked_list.prepend(1)
+# my_linked_list.pop_first()
+# print(my_linked_list.get(2))
+# my_linked_list.set_value(2,6)
+# my_linked_list.print_list
+# my_linked_list.insert(2, 32)
+# my_linked_list.remove(3)
+
+my_linked_list.append(1)
+my_linked_list.append(1)
 my_linked_list.append(0)
-my_linked_list.print_list(2)
-# (2) Items left in list - Returns 2 node
-print(my_linked_list.pop())
-# (1) Items left in list - Returns 4 node
-print(my_linked_list.pop())
-# (0) Items left in list - Returns None
-print(my_linked_list.pop())
-my_linked_list.prepend(1)
-my_linked_list.pop_first()
-print(my_linked_list.get(2))
-my_linked_list.set_value(2,6)
-my_linked_list.print_list
-my_linked_list.insert(2, 32)
-my_linked_list.remove(3)
 
 # The code snippet `print('Head:', my_linked_list.head.value)`, `print('Tail:',
 # my_linked_list.tail.value)`, and `print('Length:', my_linked_list.length)` is outputting the values
