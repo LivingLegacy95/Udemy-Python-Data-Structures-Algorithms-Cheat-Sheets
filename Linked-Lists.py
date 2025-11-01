@@ -296,12 +296,12 @@ def binary_to_decimal(self):
     current = self.head
     last_node = 0
     while current.next is not None:
-        if current == 1:
+        if current.value == 1:
             current.value = current.value * 2 + current.value
-        elif current == 0:
+        elif current.value == 0:
             current.value = current.value + 0
         current = current.next
-    if current.next is None and current == 1:
+    if current.next is None and current.value == 1:
         current.value = current.value + last_node
     return last_node
 
@@ -313,7 +313,13 @@ def binary_to_decimal(self):
         current = current.next
     return num
 
-
+def partition_list(self, x):
+    dummy1 = 0
+    dummy2 = 0
+    D1 = dummy1
+    D2 = dummy2
+    
+    
 
 
 
